@@ -1,181 +1,963 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bleam AI — Intelligent Automation for Businesses</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Bleam AI — Intelligent Automation for Modern Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* Global Reset */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; scroll-behavior:smooth; }
-body { background-color:#F9FAFB; color:#111827; line-height:1.6; }
-a { text-decoration:none; color:inherit; }
-button { cursor:pointer; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #3B82F6;
+  --primary-dark: #2563EB;
+  --primary-light: #60A5FA;
+  --accent: #8B5CF6;
+  --dark: #0A0A0A;
+  --dark-lighter: #1A1A1A;
+  --gray: #6B7280;
+  --gray-light: #E5E7EB;
+  --white: #FFFFFF;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #FFFFFF;
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
 /* Header */
-header { display:flex; justify-content:space-between; align-items:center; padding:1rem 3rem; background:#111827; color:#fff; position:sticky; top:0; z-index:1000; }
-header h1 { font-weight:700; font-size:1.8rem; color:#6366F1; }
-nav a { margin-left:1.5rem; font-weight:600; color:#fff; transition:0.3s; }
-nav a:hover { color:#6366F1; }
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
 
-/* Hero */
-.hero { display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:8rem 2rem; max-width:1000px; margin:auto; border-radius:16px; background:linear-gradient(135deg, #6366F1, #8B5CF6); color:#fff; position:relative; overflow:hidden; }
-.hero h2 { font-size:3rem; font-weight:700; margin-bottom:1rem; line-height:1.2; }
-.hero p { font-size:1.25rem; margin-bottom:2rem; max-width:700px; }
-.hero button { background:linear-gradient(90deg,#A78BFA,#6366F1); color:#fff; padding:1rem 2.5rem; font-size:1rem; font-weight:600; border:none; border-radius:8px; transition:0.3s; }
-.hero button:hover { transform:scale(1.05); background:linear-gradient(90deg,#7C3AED,#4F46E5); }
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* Sections */
-section { padding:5rem 2rem; max-width:1200px; margin:0 auto; }
-section h3 { font-size:2rem; font-weight:700; color:#6366F1; margin-bottom:2rem; text-align:center; }
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  position: relative;
+}
 
-/* Cards */
-.features, .use-cases, .workflow { display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; }
-.card { background:#fff; border-radius:16px; padding:2rem; width:320px; box-shadow:0 8px 24px rgba(0,0,0,0.05); text-align:center; transition:0.3s; transform:translateY(20px); opacity:0; }
-.card.show { transform:translateY(0); opacity:1; }
-.card:hover { transform:translateY(-5px); box-shadow:0 12px 36px rgba(0,0,0,0.08); }
-.card h4 { font-size:1.25rem; color:#6366F1; margin-bottom:1rem; }
-.card p { font-size:1rem; color:#4B5563; }
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+nav a {
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+nav a:not(.cta-nav):hover {
+  color: var(--primary);
+}
+
+.cta-nav {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white !important;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.cta-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #6b21a8 100%);
+  overflow: hidden;
+  padding: 10rem 2rem 6rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(96, 165, 250, 0.3) 0%, transparent 50%);
+  animation: gradientMove 20s ease infinite;
+}
+
+@keyframes gradientMove {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  animation: float 20s infinite ease-in-out;
+}
+
+.shape:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.shape:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  text-align: center;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -3px;
+}
+
+.hero-highlight {
+  background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  position: relative;
+}
+
+.hero-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #60A5FA, #A78BFA);
+  border-radius: 2px;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--primary);
+  padding: 1.1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 1.1rem 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Section Styles */
+section {
+  padding: 7rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+}
+
+.section-description {
+  font-size: 1.3rem;
+  color: var(--gray);
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.card {
+  background: white;
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+  border-color: var(--primary-light);
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.card h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.card p {
+  color: var(--gray);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Workflow Section */
+#workflow {
+  background: linear-gradient(135deg, #EFF6FF 0%, #F3E8FF 100%);
+  border-radius: 40px;
+  margin: 5rem auto;
+  padding: 7rem 4rem;
+}
+
+.workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+.step {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease;
+}
+
+.step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-number {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  margin: 0 auto 2rem;
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+  position: relative;
+}
+
+.step-number::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--primary-light);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.step h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.step p {
+  color: var(--gray);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
 
 /* Contact Form */
-.contact-form { max-width:600px; margin:0 auto; background:#fff; padding:2rem; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.05); }
-.contact-form input, .contact-form textarea { width:100%; padding:1rem; margin-bottom:1rem; border:1px solid #D1D5DB; border-radius:8px; font-size:1rem; }
-.contact-form button { width:100%; padding:1rem; font-weight:600; font-size:1rem; border:none; border-radius:8px; background:linear-gradient(90deg,#6366F1,#A78BFA); color:#fff; transition:0.3s; }
-.contact-form button:hover { transform:scale(1.05); background:linear-gradient(90deg,#4F46E5,#7C3AED); }
-.contact-form .success { color:green; display:none; margin-top:1rem; }
-.contact-form .error { color:red; display:none; margin-top:1rem; }
+#contact {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: white;
+  border-radius: 40px;
+  padding: 7rem 4rem;
+  margin: 5rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+#contact .section-title {
+  color: white;
+}
+
+#contact .section-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-form {
+  max-width: 650px;
+  margin: 4rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 1.3rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+}
+
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px rgba(59, 130, 246, 0.5);
+}
+
+.form-message {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 700;
+  display: none;
+}
+
+.form-message.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}
+
+.form-message.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
 
 /* Footer */
-footer { text-align:center; padding:2rem; background:#111827; color:#fff; font-size:0.9rem; }
+footer {
+  background: #FAFAFA;
+  color: var(--gray);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
 
 /* Responsive */
-@media(max-width:768px){ .features,.use-cases,.workflow{ flex-direction:column; align-items:center; } .hero h2{ font-size:2.2rem; } } </style>
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 1.25rem 1.5rem;
+  }
 
+  nav {
+    display: none;
+  }
+  
+  .hero {
+    padding: 8rem 1.5rem 5rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+    letter-spacing: -1.5px;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .workflow-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scroll animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* N8N Chatbot Container */
+#n8n-chatbot-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#n8n-chatbot-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  #n8n-chatbot-container {
+    width: calc(100vw - 40px);
+    height: 500px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Bleam AI</h1>
-  <nav>
-    <a href="#features">Features</a>
-    <a href="#use-cases">Use Cases</a>
-    <a href="#workflow">How it Works</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="nav-container">
+    <div class="logo">BLEAM AI</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#workflow">How it Works</a>
+      <a href="#" class="cta-nav" id="bookMeetingBtn">Book a Meeting</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-  <h2>Intelligent AI Automation for Every Business</h2>
-  <p>Streamline operations, reduce errors, and scale your business with cutting-edge AI workflows designed for speed and efficiency.</p>
-  <button>Get Started</button>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Intelligent AI Automation for <span class="hero-highlight">Modern Businesses</span></h1>
+    <p>Transform your operations with cutting-edge AI workflows. Streamline processes, reduce errors, and scale faster than ever before.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Start Free Trial</button>
+      <button class="btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">See How It Works</button>
+    </div>
+  </div>
 </section>
 
 <section id="features">
-  <h3>Our Core Services</h3>
-  <div class="features">
+  <div class="section-header">
+    <span class="section-label">Core Services</span>
+    <h2 class="section-title">Powerful AI Features</h2>
+    <p class="section-description">Everything you need to automate your business operations and drive growth with intelligent AI solutions.</p>
+  </div>
+  <div class="cards-grid">
     <div class="card">
-      <h4>AI Workflow Automation</h4>
-      <p>Automate repetitive tasks across your business, saving time and increasing productivity.</p>
+      <div class="card-icon">🤖</div>
+      <h3>AI Workflow Automation</h3>
+      <p>Automate repetitive tasks across your entire business infrastructure, saving countless hours and eliminating human error.</p>
     </div>
     <div class="card">
-      <h4>Voice AI Assistant</h4>
-      <p>Interact with clients and manage communications effortlessly with AI-powered voice bots.</p>
+      <div class="card-icon">🎙️</div>
+      <h3>Voice AI Assistant</h3>
+      <p>Deploy intelligent voice bots that handle customer interactions, scheduling, and communications with natural language understanding.</p>
     </div>
     <div class="card">
-      <h4>Lead Generation Bots</h4>
-      <p>Generate and nurture leads automatically, helping your business grow faster.</p>
+      <div class="card-icon">📈</div>
+      <h3>Lead Generation Bots</h3>
+      <p>Automatically capture, qualify, and nurture leads 24/7, accelerating your sales pipeline and business growth.</p>
     </div>
   </div>
 </section>
 
 <section id="use-cases">
-  <h3>Industries We Serve</h3>
-  <div class="use-cases">
+  <div class="section-header">
+    <span class="section-label">Industries</span>
+    <h2 class="section-title">Built for Your Industry</h2>
+    <p class="section-description">Trusted by businesses across multiple sectors to streamline operations and deliver exceptional results.</p>
+  </div>
+  <div class="cards-grid">
     <div class="card">
-      <h4>Clinics & Healthcare</h4>
-      <p>Streamline appointment booking, reminders, and patient follow-ups.</p>
+      <div class="card-icon">🏥</div>
+      <h3>Clinics & Healthcare</h3>
+      <p>Streamline appointment scheduling, automated reminders, patient follow-ups, and administrative workflows for medical practices.</p>
     </div>
     <div class="card">
-      <h4>Agencies & Marketing</h4>
-      <p>Automate client communications, reporting, and lead management.</p>
+      <div class="card-icon">📊</div>
+      <h3>Agencies & Marketing</h3>
+      <p>Automate client communications, campaign management, reporting, and lead nurturing for marketing teams.</p>
     </div>
     <div class="card">
-      <h4>E-Commerce</h4>
-      <p>Automate order processing, customer support, and inventory alerts.</p>
+      <div class="card-icon">🛒</div>
+      <h3>E-commerce & Retail</h3>
+      <p>Enhance customer support, inventory management, order processing, and personalized shopping experiences.</p>
     </div>
   </div>
 </section>
 
 <section id="workflow">
-  <h3>How Bleam AI Works</h3>
-  <div class="workflow">
-    <div class="card">
-      <h4>Step 1</h4>
-      <p>Integrate your tools and systems seamlessly with Bleam AI.</p>
+  <div class="section-header">
+    <span class="section-label">Simple Process</span>
+    <h2 class="section-title">How Bleam AI Works</h2>
+    <p class="section-description">Get started in minutes with our streamlined onboarding process and intelligent automation platform.</p>
+  </div>
+  <div class="workflow-steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Connect Your Tools</h3>
+      <p>Integrate your existing business tools and platforms with our simple API connections.</p>
     </div>
-    <div class="card">
-      <h4>Step 2</h4>
-      <p>Configure automated workflows tailored to your business processes.</p>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Configure Workflows</h3>
+      <p>Set up custom automation workflows tailored to your specific business needs and processes.</p>
     </div>
-    <div class="card">
-      <h4>Step 3</h4>
-      <p>Monitor, optimize, and scale your operations effortlessly.</p>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Launch & Scale</h3>
+      <p>Activate your AI-powered automations and watch your efficiency skyrocket as you scale.</p>
     </div>
   </div>
 </section>
 
-<section id="about">
-  <h3>About Bleam AI</h3>
-  <p style="text-align:center; max-width:800px; margin:auto;">Bleam AI empowers businesses with intelligent automation solutions, simplifying complex operations, saving time, and driving growth using cutting-edge AI technology.</p>
-</section>
-
 <section id="contact">
-  <h3>Contact Us</h3>
+  <div class="section-header">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p class="section-description">Start your free trial today or contact our team to learn how Bleam AI can revolutionize your operations.</p>
+  </div>
   <form class="contact-form" id="contactForm">
-    <input type="text" placeholder="Your Name" name="name" required>
-    <input type="email" placeholder="Your Email" name="email" required>
-    <textarea rows="5" placeholder="Your Message" name="message" required></textarea>
-    <button type="submit">Send Message</button>
-    <p class="success">Your message has been sent!</p>
-    <p class="error">There was an error sending your message.</p>
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="John Smith" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="john@company.com" required>
+    </div>
+    <div class="form-group">
+      <label for="company">Company Name</label>
+      <input type="text" id="company" name="company" placeholder="Your Company">
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Tell us about your automation needs..." required></textarea>
+    </div>
+    <button type="submit" class="form-submit">Send Message</button>
+    <div class="form-message" id="formMessage"></div>
   </form>
 </section>
 
 <footer>
-  &copy; 2025 Bleam AI. All rights reserved.
+  <p>&copy; 2024 Bleam AI. All rights reserved. Empowering businesses with intelligent automation.</p>
 </footer>
 
+<!-- N8N Chatbot Container -->
+<!-- Replace 'YOUR_N8N_CHATBOT_URL' with your actual n8n chatbot embed URL -->
+<div id="n8n-chatbot-container">
+  <!-- Option 1: If you have an iframe embed code from n8n, paste it here -->
+  <!-- <iframe src="YOUR_N8N_CHATBOT_URL"></iframe> -->
+  
+  <!-- Option 2: If you have a script embed from n8n, paste it here -->
+  <!-- <script src="YOUR_N8N_SCRIPT_URL"></script> -->
+</div>
+
 <script>
-// Animate cards on load
-window.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card, i) => { setTimeout(() => card.classList.add('show'), 200*i); });
-});
+// ============================================
+// CONFIGURATION - UPDATE THESE VALUES
+// ============================================
 
-// Smooth scroll nav links
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-  });
-});
+// Paste your booking/meeting link here (e.g., Calendly, Cal.com, etc.)
+const BOOKING_LINK = 'https://calendly.com/your-link'; // CHANGE THIS
 
-// Contact form AJAX submission
-const form = document.getElementById('contactForm');
-form.addEventListener('submit', async e => {
+// ============================================
+
+// Book Meeting Button Handler
+document.getElementById('bookMeetingBtn').addEventListener('click', function(e) {
   e.preventDefault();
-  const successMsg = form.querySelector('.success');
-  const errorMsg = form.querySelector('.error');
-  successMsg.style.display='none'; errorMsg.style.display='none';
-  const data = { name: form.name.value, email: form.email.value, message: form.message.value };
+  window.open(BOOKING_LINK, '_blank');
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 100);
+    }
+  });
+}, observerOptions);
+
+// Observe all cards and steps
+document.querySelectorAll('.card, .step').forEach(el => observer.observe(el));
+
+// Contact form handling
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formMessage = document.getElementById('formMessage');
+  const submitBtn = e.target.querySelector('.form-submit');
+  const originalText = submitBtn.textContent;
+  
+  // Show loading state
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+  formMessage.style.display = 'none';
+  
+  // Get form data
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    company: document.getElementById('company').value,
+    message: document.getElementById('message').value
+  };
+  
+  // Simulate API call (replace with your actual API endpoint)
+  setTimeout(() => {
+    // Success scenario
+    formMessage.textContent = 'Thank you! We\'ll be in touch soon.';
+    formMessage.className = 'form-message success';
+    formMessage.style.display = 'block';
+    
+    // Reset form
+    e.target.reset();
+    
+    // Reset button
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      formMessage.style.display = 'none';
+    }, 5000);
+  }, 1500);
+  
+  /* 
+  // Actual API integration example:
   try {
-    const response = await fetch('YOUR_N8N_WEBHOOK_URL', {
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    const response = await fetch('YOUR_API_ENDPOINT', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     });
-    if(response.ok){ successMsg.style.display='block'; form.reset(); } else { errorMsg.style.display='block'; }
-  } catch(err){ errorMsg.style.display='block'; }
+    
+    if (response.ok) {
+      formMessage.textContent = 'Thank you! We\'ll be in touch soon.';
+      formMessage.className = 'form-message success';
+      e.target.reset();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (error) {
+    formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+    formMessage.className = 'form-message error';
+  } finally {
+    formMessage.style.display = 'block';
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+  */
+});
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 });
 </script>
 
