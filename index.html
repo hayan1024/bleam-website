@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bleam AI — Intelligent Automation for Modern Businesses</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 <style>
 * {
   margin: 0;
@@ -688,6 +689,7 @@ footer p {
   }
 }
 </style>
+</style>
 </head>
 <body>
 
@@ -826,23 +828,12 @@ footer p {
   <p>&copy; 2024 Bleam AI. All rights reserved. Empowering businesses with intelligent automation.</p>
 </footer>
 
-<!-- N8N Chatbot Container -->
-<!-- Replace 'YOUR_N8N_CHATBOT_URL' with your actual n8n chatbot embed URL -->
-<div id="n8n-chatbot-container">
-   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 <script type="module">
-	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-	createChat({
-		webhookUrl: 'https://hayan1024.app.n8n.cloud/webhook/0d31a9bf-52d3-48dc-86bb-3a258709bfae/chat'
-	});
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://hayan1024.app.n8n.cloud/webhook/0d31a9bf-52d3-48dc-86bb-3a258709bfae/chat'
+  });
 </script>
-  <!-- Option 1: If you have an iframe embed code from n8n, paste it here -->
-  <!-- <iframe src="YOUR_N8N_CHATBOT_URL"></iframe> -->
-  
-  <!-- Option 2: If you have a script embed from n8n, paste it here -->
-  <!-- <script src="YOUR_N8N_SCRIPT_URL"></script> -->
-</div>
 
 <script>
 // ============================================
